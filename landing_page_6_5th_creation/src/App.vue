@@ -564,49 +564,59 @@ onBeforeUnmount(() => {
   cursor: pointer;
 }
 
-.primary-btn {
-  padding: 0.6rem 1.5rem;
-  border-radius: var(--radius-pill);
+.primary-btn,
+.ghost-btn,
+.apps-button,
+.top-banner-btn,
+.footer-lang-btn {
+  height: 48px;
+  padding: 0 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.18s ease-out, box-shadow 0.18s ease-out,
+    filter 0.18s ease-out, background 0.18s ease-out, border-color 0.18s ease-out;
+}
+
+.primary-btn,
+.top-banner-btn {
   border: 1px solid rgba(56, 189, 248, 0.4);
   background: linear-gradient(
     135deg,
     var(--color-accent-primary),
     var(--color-accent-secondary)
   );
-  color: white;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  box-shadow: var(--shadow-soft);
-  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out,
-    filter 0.15s ease-out;
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.45);
 }
 
-.primary-btn:hover {
-  transform: translateY(-1px);
+.primary-btn:hover,
+.top-banner-btn:hover {
+  transform: translateY(-2px) scale(1.02);
   filter: brightness(1.06);
-  box-shadow: var(--shadow-strong);
-  animation: primary-glow 0.6s ease-out;
+  box-shadow: 0 14px 36px rgba(37, 99, 235, 0.6);
 }
 
-.ghost-btn {
-  padding: 0.6rem 1.4rem;
-  border-radius: var(--radius-pill);
-  border: 1px solid rgba(148, 163, 184, 0.6);
-  background: rgba(15, 23, 42, 0.7);
+.ghost-btn,
+.apps-button,
+.footer-lang-btn {
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: rgba(15, 23, 42, 0.6);
   color: var(--color-text-soft);
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.9);
-  transition: background 0.15s ease-out, border-color 0.15s ease-out,
-    transform 0.15s ease-out;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(16px);
 }
 
-.ghost-btn:hover {
+.ghost-btn:hover,
+.apps-button:hover,
+.footer-lang-btn:hover {
   background: rgba(15, 23, 42, 0.9);
   border-color: rgba(148, 163, 184, 0.9);
-  transform: translateY(-1px);
+  transform: translateY(-2px) scale(1.02);
 }
 
 .nav-menu {
@@ -653,7 +663,7 @@ onBeforeUnmount(() => {
 }
 
 .hero h1 {
-  font-size: clamp(2.4rem, 3vw + 1.8rem, 3.6rem);
+  font-size: clamp(3rem, 4vw + 1.5rem, 4rem);
   line-height: 1.02;
   margin: 0 0 var(--space-3);
 }
@@ -667,13 +677,14 @@ onBeforeUnmount(() => {
   font-size: 1.02rem;
   color: var(--color-text-soft);
   max-width: 32rem;
+  line-height: 1.6;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
-  margin: var(--space-7) 0 var(--space-4);
+  margin: var(--space-8) 0 var(--space-5);
 }
 
 .hero-main-btn {
@@ -707,27 +718,22 @@ onBeforeUnmount(() => {
 }
 
 .hero-card {
-  background: linear-gradient(
-      145deg,
-      rgba(15, 23, 42, 0.95),
-      rgba(15, 23, 42, 0.9)
-    ),
-    radial-gradient(circle at top left, #1e293b, transparent 60%);
-  border-radius: var(--radius-xl);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
   padding: var(--space-5);
   width: 100%;
   max-width: 430px;
-  box-shadow: var(--shadow-strong);
-  border: 1px solid var(--color-border-subtle);
-  backdrop-filter: blur(28px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
   transition: transform 0.22s ease-out, box-shadow 0.22s ease-out,
-    border-color 0.22s ease-out;
+    border-color 0.22s ease-out, background 0.22s ease-out;
 }
 
 .hero-card:hover {
-  transform: translateY(-4px) scale(1.01);
-  border-color: rgba(56, 189, 248, 0.7);
-  box-shadow: var(--shadow-strong);
+  transform: translateY(-4px) scale(1.02);
+  border-color: rgba(56, 189, 248, 0.8);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
 }
 
 .hero-card-header {
@@ -799,7 +805,7 @@ onBeforeUnmount(() => {
 }
 
 .section {
-  padding-top: var(--space-10);
+  padding-top: var(--space-12);
 }
 
 .section-header {
@@ -809,30 +815,31 @@ onBeforeUnmount(() => {
 }
 
 .section h2 {
-  font-size: clamp(1.6rem, 1.5vw + 1.2rem, 2rem);
+  font-size: 1.625rem;
   margin: 0;
 }
 
 .section-subtitle {
-  font-size: 0.98rem;
+  font-size: 1rem;
   color: var(--color-text-soft);
   max-width: 30rem;
   margin-top: var(--space-2);
+  line-height: 1.6;
 }
 
 .cards-grid {
-  margin-top: var(--space-6);
+  margin-top: var(--space-8);
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-5);
 }
 
 .tool-card {
-  background: var(--color-bg-elevated-soft);
-  border-radius: var(--radius-card);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
   padding: var(--space-5);
-  border: 1px solid var(--color-border-subtle);
-  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
@@ -841,21 +848,23 @@ onBeforeUnmount(() => {
 }
 
 .tool-card:hover {
-  transform: translateY(-4px) scale(1.01);
-  border-color: rgba(56, 189, 248, 0.7);
-  background: var(--color-bg-elevated);
-  box-shadow: var(--shadow-strong);
+  transform: translateY(-4px) scale(1.02);
+  border-color: rgba(56, 189, 248, 0.8);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
 }
 
 .tool-card h3 {
   font-size: 1.05rem;
   margin: 0;
+  color: #ffffff;
 }
 
 .tool-card p {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--color-text-soft);
   margin: 0;
+  line-height: 1.6;
 }
 
 .tool-actions {
@@ -882,22 +891,7 @@ onBeforeUnmount(() => {
 }
 
 .apps-button {
-  padding: 0.55rem 1.3rem;
-  border-radius: var(--radius-pill);
-  border: 1px solid rgba(148, 163, 184, 0.6);
-  background: rgba(15, 23, 42, 0.8);
-  color: var(--color-text-soft);
   font-size: 0.88rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.18s ease-out, border-color 0.18s ease-out,
-    transform 0.18s ease-out;
-}
-
-.apps-button:hover {
-  background: rgba(15, 23, 42, 1);
-  border-color: rgba(56, 189, 248, 0.8);
-  transform: translateY(-1px);
 }
 
 .text-link {
@@ -1171,7 +1165,7 @@ onBeforeUnmount(() => {
   font-size: clamp(2.75rem, 3.6vw + 2rem, 4.8rem);
   letter-spacing: 0.16em;
   font-weight: 800;
-  opacity: 0.08;
+  opacity: 0.05;
   white-space: nowrap;
   user-select: none;
   pointer-events: auto;
@@ -1180,12 +1174,12 @@ onBeforeUnmount(() => {
 }
 
 .side-text--left {
-  left: 2vw;
+  left: 1.5vw;
   text-align: left;
 }
 
 .side-text--right {
-  right: 2vw;
+  right: 1.5vw;
   text-align: right;
 }
 
